@@ -19,7 +19,24 @@ old_nicknames = {}
 #PASSWORD = 'shakilnsu2018'
 
 EMAIL = 'shakil.hossain3@northsouth.edu'
-PASSWORD = 'tom2jery'
+PASSWORD = 'mdshakilhossainnsu2018'
+
+'''
+import json
+import fbchat
+client = fbchat.Client(EMAIL, PASSWORD)
+cookies = client.getSession()
+with open("session.json", "w") as f:
+    json.dump(cookies, f)
+
+'''
+
+
+
+import json
+#import fbchat
+with open("session.json") as f:
+    cookies = json.load(f)
 
 class KeepBot(Client):
     def onColorChange(self, author_id, new_color, thread_id, thread_type, **kwargs):
@@ -56,5 +73,5 @@ class KeepBot(Client):
             self.changeNickname(old_nicknames[changed_for], changed_for, thread_id = thread_id, thread_type = thread_type)
 
 
-client = KeepBot(EMAIL, PASSWORD)
+client = KeepBot(EMAIL, PASSWORD, session_cookies=cookies)
 client.listen()
